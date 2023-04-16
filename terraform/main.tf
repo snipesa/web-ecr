@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "snipes-github-bucket1"
-    key = "terraform.tfstate"   # created in console if file location available
+    key = "state/terraform.tfstate"   # created in console if file location available
     region = "us-west-1"
   }
 }
