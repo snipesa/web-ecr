@@ -6,12 +6,12 @@ on:
    branches:
    - main
    paths:
-   - terraform/**
+   - infrastructure/**
  pull_request:
    branches:
    - main
    paths:
-   - terraform/**
+   - infrastructure/**
  
 env:
  TF_LOG: INFO
@@ -29,8 +29,8 @@ jobs:
    defaults:
      run:
        shell: bash
-       # We keep Terraform files in the terraform directory.
-       working-directory: ./terraform
+       # We keep Terraform files in the infrastructure directory.
+       working-directory: ./infrastructure
  
    steps:
      - name: Checkout the repository
@@ -55,7 +55,6 @@ jobs:
  
      - name: Terraform plan
        id: plan
-       if: github.event_name == 'pull_request'
        run: terraform plan -no-color -input=false
        continue-on-error: true
     

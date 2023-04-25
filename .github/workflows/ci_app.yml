@@ -21,7 +21,7 @@ jobs:
     defaults:
      run:
        shell: bash
-       # We keep Terraform files in the terraform directory.
+       # We keep app files in the app directory.
        working-directory: ./app
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -41,10 +41,10 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build docker image
+      - name: Build docker image #like a plan to test if the build step is working before push
         run: |
-          docker build .
-      
+          docker build .    
+        #the above command builds the docker image & won't be pushed to ecr. thats why tagx is not neccessary
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
