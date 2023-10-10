@@ -13,5 +13,5 @@ The app workflow file, with the help of the docker file builds the docker image 
 
 The image could be pulled and deployed to the vpc environment
 
-For more details on deploying into eks, view https://github.com/snipesa/cd-web-ecr
+For more details on deploying into  kubernetes using eks, view https://github.com/snipesa/cd-web-ecr
 
