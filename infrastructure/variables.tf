@@ -21,14 +21,10 @@ variable "cidr_pub2" {
 variable "cidr_pub3" {
 }
 
-variable "az_1" {
+variable "region" {
+
 }
 
-variable "az_2" {
-}
+variable "app_name" {
 
-variable "az_3" {
-}
-
-variable "sg-web" {
 }

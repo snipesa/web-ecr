@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "repo1" {
-  name                 = "app-repo"
+  name                 = "${var.app_name}-repo"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -19,7 +19,7 @@ resource "aws_vpc" "myvpc" {
 resource "aws_subnet" "sub1_priv" {
   vpc_id            = aws_vpc.myvpc.id
   cidr_block        = var.cidr_priv1
-  availability_zone = var.az_1
+  availability_zone = "${var.region}a"
 
   tags = {
     Name = "private1"
@@ -29,7 +29,7 @@ resource "aws_subnet" "sub1_priv" {
 resource "aws_subnet" "sub2_priv" {
   vpc_id            = aws_vpc.myvpc.id
   cidr_block        = var.cidr_priv2
-  availability_zone = var.az_2
+  availability_zone = "${var.region}b"
 
   tags = {
     Name = "private2"
@@ -39,7 +39,7 @@ resource "aws_subnet" "sub2_priv" {
 resource "aws_subnet" "sub3_priv" {
   vpc_id            = aws_vpc.myvpc.id
   cidr_block        = var.cidr_priv3
-  availability_zone = var.az_3
+  availability_zone = "${var.region}c"
 
   tags = {
     Name = "private3"
@@ -49,7 +49,7 @@ resource "aws_subnet" "sub3_priv" {
 resource "aws_subnet" "sub1_pub" {
   vpc_id                  = aws_vpc.myvpc.id
   cidr_block              = var.cidr_pub1
-  availability_zone       = var.az_1
+  availability_zone       = "${var.region}a"
   map_public_ip_on_launch = true
 
   tags = {
@@ -60,7 +60,7 @@ resource "aws_subnet" "sub1_pub" {
 resource "aws_subnet" "sub2_pub" {
   vpc_id                  = aws_vpc.myvpc.id
   cidr_block              = var.cidr_pub2
-  availability_zone       = var.az_2
+  availability_zone       = "${var.region}b"
   map_public_ip_on_launch = true
 
   tags = {
@@ -71,7 +71,7 @@ resource "aws_subnet" "sub2_pub" {
 resource "aws_subnet" "sub3_pub" {
   vpc_id                  = aws_vpc.myvpc.id
   cidr_block              = var.cidr_pub3
-  availability_zone       = var.az_3
+  availability_zone       = "${var.region}c"
   map_public_ip_on_launch = true
 
   tags = {
@@ -151,7 +151,7 @@ resource "aws_route_table_association" "private3-rt" {
 }
 
 resource "aws_security_group" "sg_1" {
-  name        = var.sg-web
+  name        = "${var.app_name}sg"
   description = "Allow tcp and ssh"
   vpc_id      = aws_vpc.myvpc.id
 
